@@ -98,7 +98,7 @@ export const ItemView = ({ route }) => {
                 <View style={styles.item__box2}>
                     <Image
                         style={styles.item__image}
-                        source={require("../../assets/images/item-3.jpg")}
+                        source={require("../../assets/images/item-10.jpg")}
                     />
                     <View style={styles.item__box21}>
                         <View style={styles.item__box211}>

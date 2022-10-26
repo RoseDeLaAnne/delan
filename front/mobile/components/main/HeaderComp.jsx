@@ -76,7 +76,7 @@ export const HeaderComp = ({ viewName }) => {
 
 const styles = StyleSheet.create({
     header: {
-        marginBottom: 32,
+        marginBottom: 24,
         paddingRight: 32,
         paddingLeft: 32,
 

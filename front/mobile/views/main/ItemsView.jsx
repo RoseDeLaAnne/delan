@@ -72,7 +72,7 @@ export const ItemsView = ({ navigation }) => {
                                 >
                                     <Image
                                         style={styles.items__itemImage}
-                                        source={require("../../assets/images/item-9.jpg")}
+                                        source={require("../../assets/images/item-6.jpg")}
                                     />
                                 </TouchableWithoutFeedback>
                                 <View style={styles.items__itemBox1}>
@@ -172,7 +172,8 @@ export const ItemsView = ({ navigation }) => {
                                             >
                                                 <View
                                                     style={
-                                                        styles.items__itemBox1111
+                                                        [styles.items__itemBox1111,
+                                                        styles.items__itemBox1111_lastChild]
                                                     }
                                                 >
                                                     <Image
@@ -243,11 +244,11 @@ const styles = StyleSheet.create({
         flexDirection: "row",
     },
     items__itemBox1111: {
-        marginRight: 10,
+        marginRight: 16,
 
         position: "relative",
     },
-    items__itemBox1111_last: {
+    items__itemBox1111_lastChild: {
         marginRight: 0,
     },
     items__itemBox11111: {
@@ -263,7 +264,7 @@ const styles = StyleSheet.create({
         marginBottom: 24,
 
         width: "100%",
-        height: 384,
+        height: 320,
 
         borderRadius: 20,
     },
