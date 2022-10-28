@@ -6,6 +6,7 @@ import {
     Text,
     View,
     FlatList,
+    SectionList,
     TouchableWithoutFeedback,
 } from "react-native";
 
@@ -58,28 +59,35 @@ export const ItemsView = ({ navigation }) => {
             <HeaderComp viewName="items" />
 
             <View style={styles.main}>
-                <View style={styles.main__box1}>
-                    <View style={styles.main__box11}>
-                        <Text style={[styles.title, styles.title1]}>New</Text>
-                    </View>
-                    <View style={styles.main__box12}>
-                        <Text style={[styles.title, styles.title2]}>
-                            Arrivals
-                        </Text>
-                        <Svg width={16} height={16} viewBox="0 0 512 512">
-                            <Path
-                                d="M480 288H32c-17.673 0-32-14.327-32-32s14.327-32 32-32h448c17.673 0 32 14.327 32 32s-14.327 32-32 32z"
-                                fill="#949494"
-                            />
-                        </Svg>
-                    </View>
-                </View>
-
                 <View style={styles.items}>
                     <FlatList
                         showsHorizontalScrollIndicator={false}
                         showsVerticalScrollIndicator={false}
                         data={items}
+                        ListHeaderComponent={() => (
+                            <View style={styles.main__box1}>
+                                <View style={styles.main__box11}>
+                                    <Text style={[styles.title, styles.title1]}>
+                                        New
+                                    </Text>
+                                </View>
+                                <View style={styles.main__box12}>
+                                    <Text style={[styles.title, styles.title2]}>
+                                        Arrivals
+                                    </Text>
+                                    <Svg
+                                        width={16}
+                                        height={16}
+                                        viewBox="0 0 512 512"
+                                    >
+                                        <Path
+                                            d="M480 288H32c-17.673 0-32-14.327-32-32s14.327-32 32-32h448c17.673 0 32 14.327 32 32s-14.327 32-32 32z"
+                                            fill="#949494"
+                                        />
+                                    </Svg>
+                                </View>
+                            </View>
+                        )}
                         renderItem={({ item }) => (
                             <View style={styles.items__item}>
                                 <TouchableWithoutFeedback
@@ -226,7 +234,7 @@ export const ItemsView = ({ navigation }) => {
                                 </View>
                             </View>
                         )}
-                    ></FlatList>
+                    />
                 </View>
             </View>
         </SafeAreaView>
@@ -239,8 +247,8 @@ const styles = StyleSheet.create({
     },
     main__box1: {
         marginBottom: 48,
-        paddingRight: 32,
-        paddingLeft: 32,
+        paddingRight: 16,
+        paddingLeft: 16,
 
         flexDirection: "column",
     },
