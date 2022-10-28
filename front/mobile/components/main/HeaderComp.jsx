@@ -10,10 +10,26 @@ import {
     TouchableWithoutFeedback,
 } from "react-native";
 
+import { useFonts } from "expo-font";
+
 import Svg, { Path } from "react-native-svg";
 
 export const HeaderComp = ({ viewName }) => {
     const navigation = useNavigation();
+
+    const [fontsLoaded] = useFonts({
+        "JosefinSlab-Thin": require("../../assets/fonts/JosefinSlab-Thin.ttf"),
+        "JosefinSlab-ExtraLight": require("../../assets/fonts/JosefinSlab-ExtraLight.ttf"),
+        "JosefinSlab-Light": require("../../assets/fonts/JosefinSlab-Light.ttf"),
+        "JosefinSlab-Regular": require("../../assets/fonts/JosefinSlab-Regular.ttf"),
+        "JosefinSlab-Medium": require("../../assets/fonts/JosefinSlab-Medium.ttf"),
+        "JosefinSlab-SemiBold": require("../../assets/fonts/JosefinSlab-SemiBold.ttf"),
+        "JosefinSlab-Bold": require("../../assets/fonts/JosefinSlab-Bold.ttf"),
+    });
+
+    if (!fontsLoaded) {
+        return null;
+    }
 
     return (
         <View style={styles.header}>
@@ -41,34 +57,47 @@ export const HeaderComp = ({ viewName }) => {
                     <TouchableWithoutFeedback
                         onPress={() => navigation.navigate("Cart")}
                     >
-                        <View style={styles.header__icon}>
-                            <Svg width={24} height={24} viewBox="0 0 24 24">
-                                <Path
-                                    d="M21 6h-3A6 6 0 0 0 6 6H3a3 3 0 0 0-3 3v10a5.006 5.006 0 0 0 5 5h14a5.006 5.006 0 0 0 5-5V9a3 3 0 0 0-3-3Zm-9-4a4 4 0 0 1 4 4H8a4 4 0 0 1 4-4Zm10 17a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V9a1 1 0 0 1 1-1h3v2a1 1 0 0 0 2 0V8h8v2a1 1 0 0 0 2 0V8h3a1 1 0 0 1 1 1Z"
-                                    fill="#000"
-                                />
-                            </Svg>
+                        <View style={styles.header__box111}>
+                            <View style={styles.header__icon}>
+                                <Svg width={24} height={24} viewBox="0 0 24 24">
+                                    <Path
+                                        d="M21 6h-3A6 6 0 0 0 6 6H3a3 3 0 0 0-3 3v10a5.006 5.006 0 0 0 5 5h14a5.006 5.006 0 0 0 5-5V9a3 3 0 0 0-3-3Zm-9-4a4 4 0 0 1 4 4H8a4 4 0 0 1 4-4Zm10 17a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V9a1 1 0 0 1 1-1h3v2a1 1 0 0 0 2 0V8h8v2a1 1 0 0 0 2 0V8h3a1 1 0 0 1 1 1Z"
+                                        fill="#000"
+                                    />
+                                </Svg>
+                            </View>
+                            <View style={styles.header__box1111}>
+                                <Text style={styles.header__cartQuantity}>
+                                    2
+                                </Text>
+                            </View>
                         </View>
                     </TouchableWithoutFeedback>
 
                     <View
                         style={[
-                            styles.header__icon,
-                            styles.header__icon_lastChild,
+                            styles.header__box111,
+                            styles.header__box111_lastChild,
                         ]}
                     >
-                        <Svg width={24} height={24} viewBox="0 0 24 24">
-                            <Path
-                                d="M17.5 1.917a6.4 6.4 0 0 0-5.5 3.3 6.4 6.4 0 0 0-5.5-3.3A6.8 6.8 0 0 0 0 8.967c0 4.547 4.786 9.513 8.8 12.88a4.974 4.974 0 0 0 6.4 0c4.014-3.367 8.8-8.333 8.8-12.88a6.8 6.8 0 0 0-6.5-7.05Zm-3.585 18.4a2.973 2.973 0 0 1-3.83 0C4.947 16.006 2 11.87 2 8.967a4.8 4.8 0 0 1 4.5-5.05 4.8 4.8 0 0 1 4.5 5.05 1 1 0 0 0 2 0 4.8 4.8 0 0 1 4.5-5.05 4.8 4.8 0 0 1 4.5 5.05c0 2.903-2.947 7.039-8.085 11.346Z"
-                                fill="#000"
-                            />
-                        </Svg>
+                        <View style={styles.header__icon}>
+                            <Svg width={24} height={24} viewBox="0 0 24 24">
+                                <Path
+                                    d="M17.5 1.917a6.4 6.4 0 0 0-5.5 3.3 6.4 6.4 0 0 0-5.5-3.3A6.8 6.8 0 0 0 0 8.967c0 4.547 4.786 9.513 8.8 12.88a4.974 4.974 0 0 0 6.4 0c4.014-3.367 8.8-8.333 8.8-12.88a6.8 6.8 0 0 0-6.5-7.05Zm-3.585 18.4a2.973 2.973 0 0 1-3.83 0C4.947 16.006 2 11.87 2 8.967a4.8 4.8 0 0 1 4.5-5.05 4.8 4.8 0 0 1 4.5 5.05 1 1 0 0 0 2 0 4.8 4.8 0 0 1 4.5-5.05 4.8 4.8 0 0 1 4.5 5.05c0 2.903-2.947 7.039-8.085 11.346Z"
+                                    fill="#000"
+                                />
+                            </Svg>
+                        </View>
                     </View>
                 </View>
-                <Image
-                    style={styles.header__avatar}
-                    source={require("../../assets/images/item-1.jpg")}
-                />
+                <TouchableWithoutFeedback
+                    onPress={() => navigation.navigate("Settings")}
+                >
+                    <Image
+                        style={styles.header__avatar}
+                        source={require("../../assets/images/item-1.jpg")}
+                    />
+                </TouchableWithoutFeedback>
             </View>
         </View>
     );
@@ -97,11 +126,35 @@ const styles = StyleSheet.create({
 
         alignItems: "center",
     },
-    header__icon: {
-        marginRight: 24,
+    header__box111: {
+        marginRight: 32,
+
+        position: "relative",
     },
-    header__icon_lastChild: {
+    header__box111_lastChild: {
         marginRight: 0,
+    },
+    header__box1111: {
+        position: "absolute",
+
+        top: -6,
+        right: -10,
+
+        width: 20,
+        height: 20,
+
+        alignItems: "center",
+        justifyContent: "center",
+
+        backgroundColor: "#000",
+
+        borderRadius: 24 / 2,
+    },
+    header__cartQuantity: {
+        fontFamily: "JosefinSlab-Bold",
+        fontSize: 14,
+
+        color: "#fff",
     },
     header__avatar: {
         width: 56,

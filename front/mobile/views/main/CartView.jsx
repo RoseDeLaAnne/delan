@@ -15,11 +15,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { useFonts } from "expo-font";
 
+import Svg, { Path } from "react-native-svg";
+
 import axios from "axios";
 
 import { HeaderComp } from "../../components/main/HeaderComp";
-
-import Svg, { Path } from "react-native-svg";
 
 export const CartView = () => {
     const navigation = useNavigation();
@@ -278,8 +278,8 @@ const styles = StyleSheet.create({
     title: {
         marginRight: 10,
 
-        fontFamily: "JosefinSlab-SemiBold",
-        fontSize: 40,
+        fontFamily: "JosefinSlab-Bold",
+        fontSize: 48,
     },
     titleQuantity: {
         fontFamily: "JosefinSlab-SemiBold",
@@ -339,6 +339,9 @@ const styles = StyleSheet.create({
         flexDirection: "column",
     },
     items__itemBox12: {
+        paddingRight: 16,
+        paddingLeft: 16,
+
         flexDirection: "row",
 
         alignItems: "center",
