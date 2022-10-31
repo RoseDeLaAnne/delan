@@ -21,7 +21,10 @@ import axios from "axios";
 import { HeaderComp } from "../../components/main/HeaderComp";
 
 export const ItemsView = ({ navigation }) => {
+    const token = "5357792608:AAEOhInjL8D4E3Ml8EKrv9AA04t4DokAsbs";
+
     const [items, setItems] = React.useState([]);
+    const [telegramResult, setTelegramResult] = React.useState([]);
 
     const [selectedColors, setSelectedColors] = React.useState({});
 
@@ -32,12 +35,32 @@ export const ItemsView = ({ navigation }) => {
                 setItems(data);
             })
             .catch((err) => {
-                console.log("Error");
+                console.log(err);
             });
+    };
+
+    const telegramGetUpdates = () => {
+        axios
+            .get(
+                `https://api.telegram.org/bot5357792608:AAEOhInjL8D4E3Ml8EKrv9AA04t4DokAsbs/getUpdates`
+            )
+            .then(({ data }) => {
+                setTelegramResult(data.result);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
+    const telegramSendMessage = (text) => {
+        axios.get(
+            `https://api.telegram.org/bot${token}/sendMessage?chat_id=${telegramResult[0].message.chat.id}&text=${text}`
+        );
     };
 
     React.useEffect(() => {
         getData();
+        telegramGetUpdates();
     }, []);
 
     const [fontsLoaded] = useFonts({
@@ -66,11 +89,20 @@ export const ItemsView = ({ navigation }) => {
                         data={items}
                         ListHeaderComponent={() => (
                             <View style={styles.main__box1}>
-                                <View style={styles.main__box11}>
-                                    <Text style={[styles.title, styles.title1]}>
-                                        New
-                                    </Text>
-                                </View>
+                                <TouchableWithoutFeedback
+                                    onPress={() => telegramSendMessage('Ahaha, what did you say to me?')}
+                                >
+                                    <View style={styles.main__box11}>
+                                        <Text
+                                            style={[
+                                                styles.title,
+                                                styles.title1,
+                                            ]}
+                                        >
+                                            New
+                                        </Text>
+                                    </View>
+                                </TouchableWithoutFeedback>
                                 <View style={styles.main__box12}>
                                     <Text style={[styles.title, styles.title2]}>
                                         Arrivals

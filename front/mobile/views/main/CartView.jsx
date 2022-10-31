@@ -24,7 +24,35 @@ import { HeaderComp } from "../../components/main/HeaderComp";
 export const CartView = () => {
     const navigation = useNavigation();
 
-    const [items, setItems] = React.useState([]);
+    const token = "5357792608:AAEOhInjL8D4E3Ml8EKrv9AA04t4DokAsbs";
+
+    const [items, setItems] = React.useState([
+        {
+            imageUrl:
+                "https://images.unsplash.com/photo-1667143297634-31c6c5f70381?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+            name: "item 1",
+            price: 59.99,
+            quantity: 1,
+            size: "XL",
+            color: {
+                name: "Green",
+                url: "https://images.unsplash.com/photo-1667143297634-31c6c5f70381?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+            },
+        },
+        {
+            imageUrl:
+                "https://images.unsplash.com/photo-1667143297634-31c6c5f70381?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+            name: "item 2",
+            price: 29.99,
+            quantity: 2,
+            size: "XL",
+            color: {
+                name: "Yellow",
+                url: "https://images.unsplash.com/photo-1667143297634-31c6c5f70381?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+            },
+        },
+    ]);
+    const [telegramResult, setTelegramResult] = React.useState([]);
 
     const getData = () => {
         axios
@@ -37,8 +65,72 @@ export const CartView = () => {
             });
     };
 
+    const telegramGetUpdates = () => {
+        axios
+            .get(
+                `https://api.telegram.org/bot5357792608:AAEOhInjL8D4E3Ml8EKrv9AA04t4DokAsbs/getUpdates`
+            )
+            .then(({ data }) => {
+                setTelegramResult(data.result);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
+    const telegramSendMessage = () => {
+        // var text = "";
+        // var photosUrl = [];
+
+        // items.map((item) => {
+        // photosUrl.push({
+        //     type: "photo",
+        //     media: item.itemImageUrl,
+        // });
+        //     text =
+        //         text +
+        //         `<b>Name:</b>   ${item.itemName}%0A<b>Quantity:</b>  ${item.itemQuantity}%0A<b>Size:</b>   ${item.itemSize}%0A<b>Color:</b>  ${item.itemColor}%0A<b>Price:</b>  $${item.itemPrice}%0A%0A`;
+        // });
+
+        // var photos = [
+        //     {
+        //         type: "photo",
+        //         media: "https://images.unsplash.com/photo-1667143297634-31c6c5f70381?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+        //     },
+        //     {
+        //         type: "photo",
+        //         media: "https://images.unsplash.com/photo-1667143297634-31c6c5f70381?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+        //     },
+        // ];
+
+        // console.log(photos);
+
+        // axios.get(
+        //     `https://api.telegram.org/bot${token}/sendMediaGroup?chat_id=${telegramResult[0].message.chat.id}&media=${photos}`
+        // );
+
+        // axios.get(
+        //     `https://api.telegram.org/bot${token}/sendMessage?chat_id=${telegramResult[0].message.chat.id}&text=${text}&parse_mode=HTML`
+        // );
+
+        setItems(items.reverse())
+
+        var photo = "";
+        var caption = "";
+
+        items.map((item) => {
+            photo = item.imageUrl;
+            caption = `<b>Name:</b>   ${item.name}%0A<b>Quantity:</b>  ${item.quantity}%0A<b>Size:</b>   ${item.size}%0A<b>Color:</b>  ${item.color.name}%0A<b>Price:</b>  $${item.price}`;
+
+            axios.get(
+                `https://api.telegram.org/bot${token}/sendPhoto?chat_id=${telegramResult[0].message.chat.id}&photo=${photo}&caption=${caption}&parse_mode=HTML`
+            );
+        });
+    };
+
     React.useEffect(() => {
         // getData();
+        telegramGetUpdates();
     }, []);
 
     const [fontsLoaded] = useFonts({
@@ -230,15 +322,21 @@ export const CartView = () => {
                         <Text style={styles.totalPrice__value}>$119.98</Text>
                     </View>
                     <View style={styles.main__box21}>
-                        <View style={styles.checkout}>
-                            <Text style={styles.checkout__text}>Checkout</Text>
-                            <Svg width={24} height={24} viewBox="0 0 24 24">
-                                <Path
-                                    d="M.88 14.09 4.75 18a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42L2.61 13H23a1 1 0 0 0 1-1 1 1 0 0 0-1-1H2.55l3.62-3.62a1 1 0 0 0 0-1.38 1 1 0 0 0-1.42 0L.88 9.85a3 3 0 0 0 0 4.24Z"
-                                    fill="#fff"
-                                />
-                            </Svg>
-                        </View>
+                        <TouchableWithoutFeedback
+                            onPress={() => telegramSendMessage("text")}
+                        >
+                            <View style={styles.checkout}>
+                                <Text style={styles.checkout__text}>
+                                    Checkout
+                                </Text>
+                                <Svg width={24} height={24} viewBox="0 0 24 24">
+                                    <Path
+                                        d="M.88 14.09 4.75 18a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42L2.61 13H23a1 1 0 0 0 1-1 1 1 0 0 0-1-1H2.55l3.62-3.62a1 1 0 0 0 0-1.38 1 1 0 0 0-1.42 0L.88 9.85a3 3 0 0 0 0 4.24Z"
+                                        fill="#fff"
+                                    />
+                                </Svg>
+                            </View>
+                        </TouchableWithoutFeedback>
                     </View>
                 </View>
             </View>
