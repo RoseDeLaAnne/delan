@@ -20,7 +20,7 @@ import axios from "axios";
 
 import { HeaderComp } from "../../components/main/HeaderComp";
 
-export const ItemsView = ({ navigation }) => {
+export const FavouritesView = ({ navigation }) => {
     const itemsData = [
         {
             id: 0,
@@ -140,7 +140,7 @@ export const ItemsView = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <HeaderComp viewName="items" />
+            <HeaderComp viewName="favourites" />
 
             <View style={styles.main}>
                 <View style={styles.items}>
@@ -150,32 +150,8 @@ export const ItemsView = ({ navigation }) => {
                         data={items}
                         ListHeaderComponent={() => (
                             <View style={styles.main__box1}>
-                                <TouchableWithoutFeedback>
-                                    <View style={styles.main__box11}>
-                                        <Text
-                                            style={[
-                                                styles.title,
-                                                styles.title1,
-                                            ]}
-                                        >
-                                            New
-                                        </Text>
-                                    </View>
-                                </TouchableWithoutFeedback>
-                                <View style={styles.main__box12}>
-                                    <Text style={[styles.title, styles.title2]}>
-                                        Arrivals
-                                    </Text>
-                                    <Svg
-                                        width={16}
-                                        height={16}
-                                        viewBox="0 0 512 512"
-                                    >
-                                        <Path
-                                            d="M480 288H32c-17.673 0-32-14.327-32-32s14.327-32 32-32h448c17.673 0 32 14.327 32 32s-14.327 32-32 32z"
-                                            fill="#949494"
-                                        />
-                                    </Svg>
+                                <View style={styles.main__box11}>
+                                    <Text style={styles.title}>Favourites</Text>
                                 </View>
                             </View>
                         )}
@@ -185,7 +161,7 @@ export const ItemsView = ({ navigation }) => {
                                     <TouchableWithoutFeedback
                                         onPress={() =>
                                             navigation.navigate("Item", {
-                                                id: 1,
+                                                id: item.id,
                                             })
                                         }
                                     >
@@ -214,7 +190,23 @@ export const ItemsView = ({ navigation }) => {
                                         {/* animation bar */}
                                     </View>
                                     <View style={styles.items__itemBox13}>
-                                        {/* dots */}
+                                        <View style={styles.items__itemDots}>
+                                            <View
+                                                style={styles.items__itemDot}
+                                            />
+                                            <View
+                                                style={[
+                                                    styles.items__itemDot,
+                                                    styles.items__itemDot_center,
+                                                ]}
+                                            />
+                                            <View
+                                                style={[
+                                                    styles.items__itemDot,
+                                                    styles.items__itemDot_lastChild,
+                                                ]}
+                                            />
+                                        </View>
                                     </View>
                                 </View>
                                 <View style={styles.items__itemBox2}>
@@ -341,9 +333,20 @@ const styles = StyleSheet.create({
     },
     items__itemBox12: {
         position: "absolute",
+
+        left: 0,
+        bottom: 0,
+
+        width: "100%",
+        height: 2,
+
+        backgroundColor: "#fff",
     },
     items__itemBox13: {
         position: "absolute",
+
+        bottom: '50%',
+        right: 16,
     },
     items__itemBox2: {
         paddingRight: 16,
@@ -383,6 +386,26 @@ const styles = StyleSheet.create({
         height: 320,
 
         borderRadius: 20,
+    },
+    items__itemDots: {
+        flexDirection: "column",
+    },
+    items__itemDot: {
+        marginBottom: 6,
+
+        width: 8,
+        height: 8,
+
+        backgroundColor: "rgba(255, 255, 255, 0.75)",
+
+        borderRadius: 8 / 2,
+    },
+    items__itemDot_center: {
+        // marginTop: 6,
+        // marginBottom: 6,
+    },
+    items__itemDot_lastChild: {
+        marginBottom: 0,
     },
     items__itemColor: {
         width: 32,

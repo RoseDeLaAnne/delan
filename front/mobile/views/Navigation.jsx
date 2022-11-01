@@ -7,6 +7,7 @@ import { ItemsView } from "../views/main/ItemsView";
 import { ItemView } from "../views/main/ItemView";
 
 import { CartView } from "../views/main/CartView";
+import { FavouritesView } from "../views/main/FavouritesView";
 import { SettingsView } from "../views/main/SettingsView";
 
 const Stack = createNativeStackNavigator();
@@ -19,6 +20,7 @@ export const Navigation = () => {
                 <Stack.Screen name="Items" component={ItemsView} />
                 <Stack.Screen name="Item" component={ItemView} />
                 <Stack.Screen name="Cart" component={CartView} />
+                <Stack.Screen name="Favourites" component={FavouritesView} />
                 <Stack.Screen name="Settings" component={SettingsView} />
             </Stack.Navigator>
         </NavigationContainer>

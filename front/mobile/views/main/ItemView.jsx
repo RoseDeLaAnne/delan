@@ -38,7 +38,7 @@ export const ItemView = ({ route }) => {
                 setItem(data);
             })
             .catch((err) => {
-                console.log("Error");
+                console.log(err);
             });
     };
 
@@ -175,14 +175,14 @@ export const ItemView = ({ route }) => {
                             </View>
                             <View style={styles.item__box2112}>
                                 <TouchableWithoutFeedback
-                                    onPress={() => setSelectedColor(1)}
+                                    onPress={() => setSelectedColor('green')}
                                 >
                                     <View style={styles.item__box21121}>
                                         <Image
                                             style={styles.item__color}
                                             source={require("../../assets/icons/color-1.png")}
                                         />
-                                        {selectedColor === 1 ||
+                                        {selectedColor === 'green' ||
                                         !selectedColor ? (
                                             <View
                                                 style={styles.item__box211211}
@@ -197,14 +197,14 @@ export const ItemView = ({ route }) => {
                                     </View>
                                 </TouchableWithoutFeedback>
                                 <TouchableWithoutFeedback
-                                    onPress={() => setSelectedColor(2)}
+                                    onPress={() => setSelectedColor('yellow')}
                                 >
                                     <View style={styles.item__box21121}>
                                         <Image
                                             style={styles.item__color}
                                             source={require("../../assets/icons/color-2.png")}
                                         />
-                                        {selectedColor === 2 ? (
+                                        {selectedColor === 'yellow' ? (
                                             <View
                                                 style={styles.item__box211211}
                                             >
@@ -218,14 +218,14 @@ export const ItemView = ({ route }) => {
                                     </View>
                                 </TouchableWithoutFeedback>
                                 <TouchableWithoutFeedback
-                                    onPress={() => setSelectedColor(3)}
+                                    onPress={() => setSelectedColor('blue')}
                                 >
                                     <View style={styles.item__box21121}>
                                         <Image
                                             style={styles.item__color}
                                             source={require("../../assets/icons/color-3.png")}
                                         />
-                                        {selectedColor === 3 ? (
+                                        {selectedColor === 'blue' ? (
                                             <View
                                                 style={styles.item__box211211}
                                             >
