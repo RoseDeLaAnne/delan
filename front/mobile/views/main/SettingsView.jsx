@@ -28,6 +28,10 @@ export const SettingsView = () => {
 
     const [items, setItems] = React.useState([]);
 
+    const [salesIsSelected, setSalesIsSelected] = React.useState(false)
+    const [newArrivalsIsSelected, setNewArrivalsIsSelected] = React.useState(false)
+    const [leftHandedModeIsSelected, setLeftHandedModeIsSelected] = React.useState(false)
+
     const getData = () => {
         axios
             .get(`https://6356dd959243cf412f8f3208.mockapi.io/items`)
@@ -38,6 +42,20 @@ export const SettingsView = () => {
                 console.log("Error");
             });
     };
+
+    const onPressEvent = (isSelected, name) => {
+        switch (name) {
+            case 'sales':
+                setSalesIsSelected(!isSelected);
+                break;
+            case 'newArrivals':
+                setNewArrivalsIsSelected(!isSelected);
+                break;
+            case 'leftHandedMode':
+                setLeftHandedModeIsSelected(!isSelected);
+                break;
+        }
+    }
 
     React.useEffect(() => {
         // getData();
@@ -82,13 +100,13 @@ export const SettingsView = () => {
 
                         <View style={styles.main__item}>
                             <Text style={styles.main__itemTitle}>Sales</Text>
-                            <CustomCheckbox isSelected={true} />
+                            <CustomCheckbox onPressEvent={onPressEvent} isSelected={salesIsSelected} name="sales" />
                         </View>
                         <View style={styles.main__item}>
                             <Text style={styles.main__itemTitle}>
                                 New Arrivals
                             </Text>
-                            <CustomCheckbox isSelected={true} />
+                            <CustomCheckbox onPressEvent={onPressEvent} isSelected={newArrivalsIsSelected} name="newArrivals" />
                         </View>
                     </View>
 
@@ -109,7 +127,7 @@ export const SettingsView = () => {
                             <Text style={styles.main__itemTitle}>
                                 Left-handed mode
                             </Text>
-                            <CustomCheckbox isSelected={false} />
+                            <CustomCheckbox onPressEvent={onPressEvent} isSelected={leftHandedModeIsSelected} name="leftHandedMode" />
                         </View>
                         <View style={styles.main__item}>
                             <Text style={styles.main__itemTitle}>

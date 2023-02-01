@@ -68,7 +68,7 @@ export const HeaderComp = ({ viewName, cartQuantity }) => {
                             </View>
                             <View style={styles.header__box1111}>
                                 <Text style={styles.header__cartQuantity}>
-                                    {cartQuantity}
+                                    {cartQuantity ? cartQuantity : 0}
                                 </Text>
                             </View>
                         </View>

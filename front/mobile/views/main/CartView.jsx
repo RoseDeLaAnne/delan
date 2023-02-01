@@ -28,7 +28,7 @@ export const CartView = () => {
 
     const [items, setItems] = React.useState([
         {
-            id: 0,
+            id: 1,
             imageUrl:
                 "https://images.unsplash.com/photo-1565693413579-8ff3fdc1b03b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
             name: "item 1",
@@ -42,7 +42,7 @@ export const CartView = () => {
             },
         },
         {
-            id: 1,
+            id: 2,
             imageUrl:
                 "https://images.unsplash.com/photo-1606081430924-b6480765d470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
             name: "item 2",
@@ -57,29 +57,45 @@ export const CartView = () => {
         },
     ]);
     const [telegramResult, setTelegramResult] = React.useState([]);
+    const [usersInfo, setUsersInfo] = React.useState([]);
+    const [chatIds, setChatIds] = React.useState([]);
 
-    const getData = () => {
-        axios
-            .get(`https://6356dd959243cf412f8f3208.mockapi.io/items`)
-            .then(({ data }) => {
-                setItems(data);
-            })
-            .catch((err) => {
-                console.log("Error");
-            });
+    const getData = async () => {
+        const response = await axios.get(
+            `https://6356dd959243cf412f8f3208.mockapi.io/items`
+        );
+
+        if (response.status === 200) {
+            setItems(response.data);
+        }
     };
 
-    const telegramGetUpdates = () => {
-        axios
-            .get(
-                `https://api.telegram.org/bot5357792608:AAEOhInjL8D4E3Ml8EKrv9AA04t4DokAsbs/getUpdates`
-            )
-            .then(({ data }) => {
-                setTelegramResult(data.result);
-            })
-            .catch((err) => {
-                console.log(err);
+    const telegramGetUpdates = async () => {
+        const response = await axios.get(
+            `https://api.telegram.org/bot5357792608:AAEOhInjL8D4E3Ml8EKrv9AA04t4DokAsbs/getUpdates`
+        );
+
+        if (response.status === 200) {
+            const result = response.data.result;
+
+            const usersInfoMap = result.map((user) => {
+                return {
+                    chatId: user.message.chat.id,
+                };
             });
+            const chatIdsMap = [
+                ...new Set(
+                    usersInfoMap.map((user) => {
+                        return user.chatId;
+                    })
+                ),
+            ];
+
+            setTelegramResult(result);
+
+            setUsersInfo(usersInfoMap);
+            setChatIds(chatIdsMap);
+        }
     };
 
     const telegramSendMessage = async () => {
@@ -87,22 +103,24 @@ export const CartView = () => {
         var caption = "";
         var text = `<b>Total Price (${
             items.length
-        } items):</b>   $${items.reduce((accumulator, item) => {
+        } items):</b> $${items.reduce((accumulator, item) => {
             return accumulator + item.price;
         }, 0)}`;
 
-        for (const item of items) {
-            photo = item.imageUrl;
-            caption = `<b>Name:</b>   ${item.name}%0A<b>Quantity:</b>  ${item.quantity}%0A<b>Size:</b>   ${item.size}%0A<b>Color:</b>  ${item.color.displayName}%0A<b>Price:</b>  $${item.price}`;
+        for (const chatId of chatIds) {
+            for (const item of items) {
+                photo = item.imageUrl;
+                caption = `<b>Name:</b> ${item.name}%0A<b>Quantity:</b> ${item.quantity}%0A<b>Size:</b> ${item.size}%0A<b>Color:</b> ${item.color.displayName}%0A<b>Price:</b> $${item.price}`;
+
+                const response = await axios.get(
+                    `https://api.telegram.org/bot${token}/sendPhoto?chat_id=${chatId}&photo=${photo}&caption=${caption}&parse_mode=HTML`
+                );
+            }
 
             const response = await axios.get(
-                `https://api.telegram.org/bot${token}/sendPhoto?chat_id=${telegramResult[0].message.chat.id}&photo=${photo}&caption=${caption}&parse_mode=HTML`
+                `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${text}&parse_mode=HTML`
             );
         }
-
-        const response = await axios.get(
-            `https://api.telegram.org/bot${token}/sendMessage?chat_id=${telegramResult[0].message.chat.id}&text=${text}&parse_mode=HTML`
-        );
     };
 
     React.useEffect(() => {

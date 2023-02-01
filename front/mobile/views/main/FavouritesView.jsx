@@ -30,8 +30,8 @@ export const FavouritesView = ({ navigation }) => {
             price: 27.42,
             images: [
                 {
-                    id: 0,
-                    colorId: 0,
+                    id: 1,
+                    colorId: 1,
                     urls: [
                         "https://images.unsplash.com/photo-1565693413579-8ff3fdc1b03b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
                         "https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
@@ -39,8 +39,8 @@ export const FavouritesView = ({ navigation }) => {
                     ],
                 },
                 {
-                    id: 1,
-                    colorId: 1,
+                    id: 2,
+                    colorId: 2,
                     urls: [
                         "https://images.unsplash.com/photo-1578681994827-a9776963799c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHN3ZWF0c2hpcnR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
                         "https://images.unsplash.com/photo-1565693413579-8ff3fdc1b03b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
@@ -48,8 +48,8 @@ export const FavouritesView = ({ navigation }) => {
                     ],
                 },
                 {
-                    id: 2,
-                    colorId: 2,
+                    id: 3,
+                    colorId: 3,
                     urls: [
                         "https://images.unsplash.com/photo-1606081430924-b6480765d470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
                         "https://images.unsplash.com/photo-1565693413579-8ff3fdc1b03b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
@@ -59,19 +59,19 @@ export const FavouritesView = ({ navigation }) => {
             ],
             colors: [
                 {
-                    id: 0,
+                    id: 1,
                     displayName: "Green",
                     imageUrl:
                         "https://images.unsplash.com/photo-1614975059251-992f11792b9f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
                 },
                 {
-                    id: 1,
+                    id: 2,
                     displayName: "Yellow",
                     imageUrl:
                         "https://images.unsplash.com/photo-1614975059251-992f11792b9f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
                 },
                 {
-                    id: 2,
+                    id: 3,
                     displayName: "Blue",
                     imageUrl:
                         "https://images.unsplash.com/photo-1614975059251-992f11792b9f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
@@ -79,19 +79,19 @@ export const FavouritesView = ({ navigation }) => {
             ],
             sizes: [
                 {
-                    id: 0,
+                    id: 1,
                     displayName: "S",
                 },
                 {
-                    id: 1,
+                    id: 2,
                     displayName: "M",
                 },
                 {
-                    id: 2,
+                    id: 3,
                     displayName: "L",
                 },
                 {
-                    id: 3,
+                    id: 4,
                     displayName: "XL",
                 },
             ],
@@ -109,7 +109,7 @@ export const FavouritesView = ({ navigation }) => {
                 itemsData.map((item) => {
                     setSelectedColors((prevState) => ({
                         ...prevState,
-                        [item.id]: 0,
+                        [item.id]: 1,
                     }));
                 });
 
@@ -232,8 +232,7 @@ export const FavouritesView = ({ navigation }) => {
                                                         style={
                                                             color.id ===
                                                             items[item.id]
-                                                                .colors.length -
-                                                                1
+                                                                .colors.length
                                                                 ? [
                                                                       styles.items__itemBox2111,
                                                                       styles.items__itemBox2111_lastChild,
@@ -345,7 +344,7 @@ const styles = StyleSheet.create({
     items__itemBox13: {
         position: "absolute",
 
-        bottom: '50%',
+        bottom: "45%",
         right: 16,
     },
     items__itemBox2: {

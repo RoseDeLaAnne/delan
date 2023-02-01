@@ -16,7 +16,7 @@ export const Navigation = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
-                <Stack.Screen name="Login" component={LoginView} />
+                {/* <Stack.Screen name="Login" component={LoginView} /> */}
                 <Stack.Screen name="Items" component={ItemsView} />
                 <Stack.Screen name="Item" component={ItemView} />
                 <Stack.Screen name="Cart" component={CartView} />

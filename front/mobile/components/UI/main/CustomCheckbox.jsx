@@ -9,11 +9,9 @@ import {
     TouchableWithoutFeedback,
 } from "react-native";
 
-export const CustomCheckbox = ({ isSelected }) => {
-    const [state, setState] = React.useState()
-
+export const CustomCheckbox = ({ isSelected, onPressEvent, name }) => {
     return (
-        <TouchableWithoutFeedback onPress={() => setState(!state)}>
+        <TouchableWithoutFeedback onPress={() => onPressEvent(isSelected, name)}>
             <View
                 style={
                     isSelected
